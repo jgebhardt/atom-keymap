@@ -141,7 +141,10 @@ exports.keystrokeForKeyboardEvent = (event, dvorakQwertyWorkaroundEnabled) ->
 exports.characterForKeyboardEvent = (event, dvorakQwertyWorkaroundEnabled) ->
   unless event.ctrlKey or event.altKey or event.metaKey
     if key = keyForKeyboardEvent(event, dvorakQwertyWorkaroundEnabled)
-      key if key.length is 1
+      if key.length is 1
+        return key
+      if key == 'space'
+        return ' '
 
 exports.calculateSpecificity = calculateSpecificity
 
